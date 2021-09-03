@@ -5,7 +5,7 @@ const { getUserId } = require("./utils");
 
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
-const User = require("./users/User");
+const User = require("./user/User");
 const Link = require("./resolvers/Link");
 
 const fs = require("fs");
@@ -23,7 +23,7 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs: [
     fs.readFileSync(path.join(__dirname, "schema.graphql"), "utf8"),
-    fs.readFileSync(path.join(__dirname, "./users/schema.graphql"), "utf8"),
+    fs.readFileSync(path.join(__dirname, "./user/schema.graphql"), "utf8"),
   ],
   resolvers,
   context: ({ req }) => {

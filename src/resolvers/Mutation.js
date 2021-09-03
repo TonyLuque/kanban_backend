@@ -1,4 +1,4 @@
-const { signup, login, post } = require("../users/Mutation");
+const { signup, login, post } = require("../user/Mutation");
 
 module.exports = {
   signup,

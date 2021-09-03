@@ -1,0 +1,10 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
+  createdAt: String
+  modifiedAt: String
+  tasks: [Task]
+  organizations: [Organization]
+}

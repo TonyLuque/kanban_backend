@@ -1,0 +1,10 @@
+type HistoryUser {
+  id: String!
+  name: String!
+  description: String
+  status: StatusTask
+  organization: Organization
+  tasks: [Task]
+  createdAt: String
+  modifiedAt: String
+}

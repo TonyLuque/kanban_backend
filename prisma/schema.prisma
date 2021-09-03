@@ -27,7 +27,7 @@ model User {
   createdAt   DateTime @default(now())
   modifiedAt  DateTime @updatedAt
   links       Link[]
-  task        Task[]
+  tasks        Task[]
   organizations Organization[]
 }
 
@@ -70,4 +70,6 @@ model Task {
     assignedToId    Int
     historyUser     HistoryUser @relation(fields: [historyUserId], references: [id])
     historyUserId   String
+    createdAt       DateTime @default(now())
+    modifiedAt      DateTime @updatedAt
 }

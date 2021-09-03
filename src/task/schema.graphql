@@ -1,0 +1,16 @@
+type Task {
+  id: String!
+  name: String
+  description: String
+  duration: Int
+  assignedTo: User
+  historyUser: HistoryUser
+}
+
+type StatusTask {
+  id: Int!
+  name: String!
+  createdAt: String
+  modifiedAt: String
+  historyUser: [HistoryUser]
+}
