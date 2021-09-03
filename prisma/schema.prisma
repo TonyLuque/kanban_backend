@@ -15,55 +15,59 @@ model Link {
     createdAt   DateTime @default(now())
     description String
     url         String
-     postedBy    User?    @relation(fields: [postedById], references: [id])
-  postedById  Int?
+    postedBy    User?    @relation(fields: [postedById], references: [id])
+    postedById  Int?
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  modifiedAt DateTime @updatedAt
-  links     Link[]
-  task      Task
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  password    String
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @updatedAt
+  links       Link[]
+  task        Task[]
   organizations Organization[]
 }
 
 model Organization {
-    id      String  @id @default(uuid())
-    name    String
-    createdAt DateTime @default(now())
-    mofifyAt DateTime @updatedAt
-    members User[]
+    id          String  @id @default(uuid())
+    name        String
+    createdAt   DateTime @default(now())
+    mofifyAt    DateTime @updatedAt
+    members     User[]
+    historiesUser HistoryUser[]
 }
 
 model HistoryUser {
-    id String   @id @default(uuid())
-    name String
-    description String
-    status  Status @default(NEW)
-    createsAt   DateTime @default(now())
-    modifiedAt DateTime @updatedAt
-    organization Organization @relation(fields:[organizationId], references: [id])
-    organizationId String
-    tasks Task[]
+    id              String          @id @default(uuid())
+    name            String
+    description     String
+    status          StatusTask      @relation(fields: [statusId], references:[id])
+    statusId        Int
+    createsAt       DateTime        @default(now())
+    modifiedAt      DateTime        @updatedAt
+    organization    Organization    @relation(fields:[organizationId], references: [id])
+    organizationId  String
+    tasks           Task[]
 }
 
-enum Status {
-    NEW,
-    IN_PROGRES,
-    DONE
+model StatusTask {
+  id          Int      @id @default(autoincrement())
+  name        String
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @updatedAt
+  historyUser HistoryUser[]
 }
 
 model Task {
-    id  String @id @default(uuid())
-    name String
-    description String
-    duration Int
-    assignedTo User @relation(fields: [assignedToId], references: [id])
-    assignedToId Int
-    historyUser HistoryUser @relation(fields: [historyUserId], references: [id])
-    historyUserId String
+    id              String @id @default(uuid())
+    name            String
+    description     String
+    duration        Int
+    assignedTo      User @relation(fields: [assignedToId], references: [id])
+    assignedToId    Int
+    historyUser     HistoryUser @relation(fields: [historyUserId], references: [id])
+    historyUserId   String
 }
